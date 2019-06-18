@@ -27,7 +27,7 @@ Diretorio* alocarDiretorio(char* nome){
 		return dir;
 }
 
-Arquivo* alocarArquivo(char nome, char tipo){
+Arquivo* alocarArquivo(char* nome, char tipo){
 
 		Arquivo* arq;
 
@@ -90,23 +90,22 @@ void insereNo(Arv* noEntrada, Arv* arvore, char* nome){
 
 void* renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora,char* noPai){
 	Arv* noAux = busca(arvore,nome);
-	if(noAux == NULL){
+	Arv* noAux2 = busca(arvore,noPai);
+	if(noAux == NULL || noAux2 == NULL){
 		return NULL;
-		exit(1);
 	}
 	if(noAux->tipo == 1){
-		noAux->info->nome = novoNome;
-		noAux->info->data = data;
-		noAux->info->hora = hora;
+		(((Diretorio*)noAux->info)->nome) = novoNome;
+		(((Diretorio*)noAux->info)->data) = data;
+		(((Diretorio*)noAux->info)->hora) = hora;
 	}
 	
 	if(noAux->tipo == 2){
-		Arv* noAux2 = busca(arvore,noPai);
-		noAux->info->nome = novoNome;
-		noAux->info->data = data;
-		noAux->info->hora = hora;
-		noAux2->info->data = data;
-		noAux2->info->hora = hora;
+		(((Arquivo*)noAux->info)->nome) = novoNome;
+		(((Arquivo*)noAux->info)->data) = data;
+		(((Arquivo*)noAux->info)->hora) = hora;
+		(((Diretorio*)noAux2->info)->data) = data;
+		(((Diretorio*)noAux2->info)->hora) = hora;
 	}	
 }
 
@@ -117,16 +116,16 @@ void* transformar(Arv* arvore, char tipo,char* data, char* hora,char* noPai,char
 		return NULL;
 	}
 
-	if(noAux->info->tipo == tipo){
+	if( (((Arquivo*)noAux->info)->tipo) == tipo){
 		printf("Arquivo ja e do tipo inserido.");
 		return NULL;
 	}
 
 	else{	
-		noAux->info->tipo = tipo;
-		noAux->info->data = data;
-		noAux->info->hora = hora;
-		noAux2->info->data = data;
-		noAux2->info->hora = hora;
+		(((Arquivo*)noAux->info)->tipo) = tipo;
+		(((Arquivo*)noAux->info)->data) = data;
+		(((Arquivo*)noAux->info)->hora) = hora;
+		(((Diretorio*)noAux2->info)->data) = data;
+		(((Diretorio*)noAux2->info)->hora) = hora;
 	}
 }
