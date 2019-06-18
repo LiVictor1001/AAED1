@@ -109,7 +109,7 @@ void renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora,cha
 	}	
 }
 
-void transformar(Arv* arvore, char tipo,char* data, char* hora,char* noPai){
+void transformar(Arv* arvore, char tipo,char* data, char* hora,char* noPai,char* nome){
 	Arv* noAux = busca(arvore,nome);
 	if(noAux->info->tipo == tipo){
 		exit(1);
