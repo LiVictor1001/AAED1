@@ -18,7 +18,7 @@
 	};
 
 	struct arquivo{
-		char nome;
+		char* nome;
 		char tipo;
 		int tam;
 		char* data;
@@ -29,6 +29,7 @@
 	};
 
 	struct arv{
+		int tipo;
 		void* info;
 		struct arv* filho;
 		struct arv* irmao;
@@ -41,8 +42,8 @@
 	Arv* criarNo(void* val);
 	Arv* removerNo(Arv* no);
 	int qual_tipo(char val);
-	Diretorio* alocarDiretorio(char* nome,int tam,char* data, char* hora);
-	Arquivo* alocarArquivo(char nome,char tipo,char* data, char* hora);
+	Diretorio* alocarDiretorio(char* nome);
+	Arquivo* alocarArquivo(char nome,char tipo);
 
 
 
