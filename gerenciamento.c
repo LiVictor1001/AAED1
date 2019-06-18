@@ -88,9 +88,10 @@ void insereNo(Arv* noEntrada, Arv* arvore, char* nome){
 
 }
 
-void renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora,char* noPai){
+void* renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora,char* noPai){
 	Arv* noAux = busca(arvore,nome);
 	if(noAux == NULL){
+		return NULL;
 		exit(1);
 	}
 	if(noAux->tipo == 1){
@@ -109,14 +110,19 @@ void renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora,cha
 	}	
 }
 
-void transformar(Arv* arvore, char tipo,char* data, char* hora,char* noPai,char* nome){
+void* transformar(Arv* arvore, char tipo,char* data, char* hora,char* noPai,char* nome){
 	Arv* noAux = busca(arvore,nome);
-	if(noAux->info->tipo == tipo){
-		exit(1);
+	Arv* noAux2 = busca(arvore,noPai);
+	if(noAux == NULL || noAux == NULL){
+		return NULL;
 	}
 
-	else{
-		Arv* noAux2 = busca(arvore,noPai);
+	if(noAux->info->tipo == tipo){
+		printf("Arquivo ja e do tipo inserido.");
+		return NULL;
+	}
+
+	else{	
 		noAux->info->tipo = tipo;
 		noAux->info->data = data;
 		noAux->info->hora = hora;
