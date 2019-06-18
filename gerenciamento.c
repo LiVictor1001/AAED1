@@ -72,23 +72,51 @@ Arv* busca(Arv* arvore, char* nome1)
 	}
 }
 
-void insereNo(Arv* noEntrada, Arv* arvore, char* nome)
-{
+void insereNo(Arv* noEntrada, Arv* arvore, char* nome){
 	Arv* noPai = busca(arvore, nome);
 	Arv* noAux;
 
-	if(noPai->filho != NULL)
-	{
-		for(noAux = noPai->filho->irmao; noAux != NULL; noAux = noAux->irmao)
-		{
+	if(noPai->filho != NULL){
+		for(noAux = noPai->filho->irmao; noAux != NULL; noAux = noAux->irmao){
+			if(noAux == NULL){
+				noAux->irmao = noEntrada;
+			}
 		}
-		if(noAux == NULL)
-		{
-			noAux->irmao = noEntrada;
-		}
-	}else
-	{
+	}
+	else{
 		noPai->filho = noEntrada; 
 	}
 
+}
+
+void renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora){
+	Arv* noAux = busca(arvore,nome);
+	if(noAux->tipo == 1){
+		noAux->info->nome = novoNome;
+		noAux->info->data = data;
+		noAux->info->hora = hora;
+	}
+	
+	if(noAux->tipo == 2){
+		noAux->nome = novoNome;
+		noAux->data = data;
+		noAux->hora = hora;
+		noAux->info->data = data;
+		noAux->info->hora = hora;
+	}	
+}
+
+void transformar(Arv* arvore, char tipo,char* data, char* hora){
+	Arv* noAux = busca(arvore,nome);
+	if(noAux->info->tipo == tipo){
+		exit(1);
+	}
+
+	else{
+		noAux->info->tipo = tipo;
+		noAux->info->data = data;
+		noAUx->info->hora = hora;
+		noAux->data = data;
+		noAux->hora = hora;
+	}
 }

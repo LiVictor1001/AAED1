@@ -3,7 +3,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include <time.h>//biblioteca para pegar a data e hora do sistema
 
 	struct tm* data_hora_atual;//estrutura de data e hora do sistema
@@ -11,7 +10,10 @@
 	struct diretorio{
 
 		char* nome;
-		int numArq, numDire;
+		int numArqDir;
+		char* data;
+		char* hora;
+		//int numDire;
 
 	};
 
@@ -19,6 +21,8 @@
 		char nome;
 		char tipo;
 		int tam;
+		char* data;
+		char* hora;
 		//time_t dia, mes, ano; 
 		//time_t hora, min;
 		/*time_t é tipo da variável para receber informações de data e hora*/
@@ -37,8 +41,8 @@
 	Arv* criarNo(void* val);
 	Arv* removerNo(Arv* no);
 	int qual_tipo(char val);
-	Diretorio* alocarDiretorio(char nome);
-	Arquivo* alocarArquivo(char nome, char tipo);
+	Diretorio* alocarDiretorio(char* nome,int tam,char* data, char* hora);
+	Arquivo* alocarArquivo(char nome,char tipo,char* data, char* hora);
 
 
 
