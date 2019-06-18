@@ -91,6 +91,9 @@ void insereNo(Arv* noEntrada, Arv* arvore, char* nome){
 
 void renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora){
 	Arv* noAux = busca(arvore,nome);
+	if(noAux == NULL){
+		exit(1);
+	}
 	if(noAux->tipo == 1){
 		noAux->info->nome = novoNome;
 		noAux->info->data = data;
