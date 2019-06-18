@@ -17,13 +17,12 @@ int qual_tipo(char val){//estava usando essa função para descobrir se era arqu
 	}
 }
 
-Diretorio* alocarDiretorio(char nome){
+Diretorio* alocarDiretorio(char* nome){
 		Diretorio* dir;
 
 		dir = (Diretorio*) malloc(sizeof(Diretorio));
 		dir->nome = nome;
-		dir->numArq = 0;
-		dir->numDire = 0;
+		dir->numArqDir= 0;
 
 		return dir;
 }
@@ -89,7 +88,7 @@ void insereNo(Arv* noEntrada, Arv* arvore, char* nome){
 
 }
 
-void renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora){
+void renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora,char* noPai){
 	Arv* noAux = busca(arvore,nome);
 	if(noAux == NULL){
 		exit(1);
@@ -101,25 +100,27 @@ void renomear(Arv* arvore, char* nome, char* novoNome,char* data, char* hora){
 	}
 	
 	if(noAux->tipo == 2){
-		noAux->nome = novoNome;
-		noAux->data = data;
-		noAux->hora = hora;
+		Arv* noAux2 = busca(arvore,noPai);
+		noAux->info->nome = novoNome;
 		noAux->info->data = data;
 		noAux->info->hora = hora;
+		noAux2->info->data = data;
+		noAux2->info->hora = hora;
 	}	
 }
 
-void transformar(Arv* arvore, char tipo,char* data, char* hora){
+void transformar(Arv* arvore, char tipo,char* data, char* hora,char* noPai){
 	Arv* noAux = busca(arvore,nome);
 	if(noAux->info->tipo == tipo){
 		exit(1);
 	}
 
 	else{
+		Arv* noAux2 = busca(arvore,noPai);
 		noAux->info->tipo = tipo;
 		noAux->info->data = data;
-		noAUx->info->hora = hora;
-		noAux->data = data;
-		noAux->hora = hora;
+		noAux->info->hora = hora;
+		noAux2->info->data = data;
+		noAux2->info->hora = hora;
 	}
 }
