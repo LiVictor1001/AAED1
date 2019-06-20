@@ -9,6 +9,13 @@ char *: "String",\
 void *: "Pointer",\
 default: "Undefined")
 
+char* ret_name(Arv* no){
+	if(strcmp(typeof(no->info), "Diretorio") == 0)
+		return ((*Diretorio)no->info)->nome;
+	else
+		return ((*Arquivo)no->info)->nome;
+}
+
 int qual_tipo(char val){//estava usando essa função para descobrir se era arquivo ou diretório.
 
 	switch(val){
@@ -140,12 +147,12 @@ Arv* find_the_father(Arv* raiz, char* filho){
 	if(strcmp(typeof(raiz->info),"Diretorio") !=0)
 		goto looknext;
 
-	if(strcmp(raiz->filho->info->nome, filho))
+	if(strcmp(ret_name(raiz->filho), filho) == 0)
 		return raiz;
 	else{
 		Arv* aux1 = raiz->filho->irmao;
 		while(aux1 != NULL){
-			if(strcmp(aux1->info->nome, filho) == 0)
+			if(strcmp(ret_name(aux1), filho) == 0)
 				return raiz;
 			aux1 = aux1->irmao;
 		}
