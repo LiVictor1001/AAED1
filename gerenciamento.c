@@ -134,7 +134,21 @@ void* transformar(Arv* arvore, char tipo,char* data, char* hora,char* noPai,char
 		return NULL;
 	}
 
-	else{	
+	else{
+		int i = 0;
+		while( (((Arquivo*)noAux->info)->nome)[i] != '.'){
+			i++;
+		}
+		if(tipo == 'T'){
+			(((Arquivo*)noAux->info)->nome)[i+2] = 't';
+			(((Arquivo*)noAux->info)->nome)[i+4] = 't';
+		}
+
+		if(tipo == 'B'){
+			(((Arquivo*)noAux->info)->nome)[i+2] = 'e';
+			(((Arquivo*)noAux->info)->nome)[i+4] = 'e';
+		}
+
 		(((Arquivo*)noAux->info)->tipo) = tipo;
 		(((Arquivo*)noAux->info)->data) = data;
 		(((Arquivo*)noAux->info)->hora) = hora;
@@ -228,4 +242,49 @@ void mover(Arv* arvore, char* aam, char* dest){
 		}
 		bigAux->irmao = noAux;
 	}
+}
+
+void destruir(Arv* no,char c,char* nome){
+
+	if(c == '1'){   //destruir toda a árvore
+		apagar(no);
+	}
+	
+	else if(c == '2' || c == '3'){  // destruir um diretorio ou um arquivo
+		Arv* noAux = busca(no,nome);
+		Arv* noAux2 = find_the_father(no,nome);
+		if( strcmp(ret_name(noAux2->filho), nome) == 0){
+			noAux2->filho = noAux->irmao;
+			noAux->irmao = NULL;
+		}
+
+		else{
+			Arv* noAux3 = noAux2->filho;
+			while(noAux3->irmao != noAux){
+				noAux3 = noAux3->irmao;
+			}
+
+			noAux3->irmao = noAux->irmao;
+			noAux->irmao = NULL;
+		}
+		if(c == '2'){
+			apagar(noAux);
+		}
+		if(c == '3'){
+			free(noAux);
+		}
+	}
+
+}
+
+void apagar(Arv* no){
+	if(no->irmao != NULL){
+		apagar(no->irmao);
+	}
+
+	if(no->filho != NULL){
+		apagar(no->filho);
+	}
+
+	free(no);
 }

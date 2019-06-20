@@ -45,6 +45,7 @@
 	int qual_tipo(char val);
 	Diretorio* alocarDiretorio(char* nome);
 	Arquivo* alocarArquivo(char nome,char tipo);
+	void apagar(Arv* no);
 
 
 
