@@ -59,25 +59,22 @@ Arv* criarNo(void* val){
 
 Arv* busca(Arv* arvore, char* nome1)
 {
-	Arv* noAux = arvore;
-	while(((Diretorio*)noAux->info)->nome != nome1)
+	if(strcmp(((Diretorio*)arvore->info)->nome, nome1) != 0)
 	{
-		Arv* noAux2 = noAux;
-		
-		while(strcmp(((Diretorio*)noAux->info)->nome, nome1) != 0 && noAux2 != NULL)
+		if(arvore->filho != NULL)
 		{
-			noAux2 = noAux2->irmao;
+			busca(arvore->filho, nome1);
 		}
-		if(strcmp(((Diretorio*)noAux->info)->nome, nome1) == 0)
+		if(arvore->irmao != NULL)
 		{
-			return noAux2;
+			busca(arvore->irmao, nome1);
 		}
-		noAux = noAux ->filho;
 	}
-	if(strcmp(((Diretorio*)noAux->info)->nome, nome1) == 0)
+	else
 	{
-		return noAux;
+		return arvore;
 	}
+	
 }
 
 void insereNo(Arv* noEntrada, Arv* arvore, char* nome){
