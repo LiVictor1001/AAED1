@@ -101,7 +101,10 @@ int main(int argc, char const *argv[])
 
 					break;
 				default:
-					printf("Why?\n");
+					if(!(c == EOF)){
+						printf("Caracter não permitido\n");
+						exit(1);
+					}
 			}
 		}
 	
