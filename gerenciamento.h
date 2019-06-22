@@ -12,8 +12,10 @@
 
 		char* nome;
 		int numArqDir;
-		char* data;
-		char* hora;
+		char* dataCriacao;
+		char* horaCriacao;
+		char* dataModificacao;
+		char* horaModificacao;
 		//int numDire;
 
 	};
@@ -42,7 +44,7 @@
 	Arv* criarNo(void* val);
 	Arv* removerNo(Arv* no);
 	int qual_tipo(char val);
-	Diretorio* alocarDiretorio(char* nome);
+	Diretorio* alocarDiretorio(char* nome,int tam,char* dataCriacao, char* horaCriacao);
 	Arquivo* alocarArquivo(char* nome,char tipo,int tam,char* dataCriacao, char* horaCriacao);
 	void apagar(Arv* no);
 
