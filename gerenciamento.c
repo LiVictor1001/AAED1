@@ -33,23 +33,32 @@ int qual_tipo(char val){//estava usando essa função para descobrir se era arqu
 	}
 }
 
-Diretorio* alocarDiretorio(char* nome){
+Diretorio* alocarDiretorio(char* nome,int tam,char* dataCriacao, char* horaCriacao){
 		Diretorio* dir;
 
 		dir = (Diretorio*) malloc(sizeof(Diretorio));
 		dir->nome = nome;
-		dir->numArqDir= 0;
+		dir->numArqDir = tam;
+		dir->dataCriacao = dataCriacao;
+		dir->horaCriacao = horaCriacao;
+		dir->dataModificacao = "0";
+		dir->horaModificacao = "0";
 
 		return dir;
 }
 
-Arquivo* alocarArquivo(char* nome, char tipo){
+Arquivo* alocarArquivo(char* nome,char tipo,int tam,char* dataCriacao, char* horaCriacao){
 
 		Arquivo* arq;
 
 		arq = (Arquivo*) malloc(sizeof(Arquivo));
 		arq->nome = nome;
 		arq->tipo = tipo;
+		arq->tam = tam;
+		arq->dataCriacao = dataCriacao;
+		arq->horaCriacao = horaCriacao;
+		arq->dataModificacao = "0";
+		arq->horaModificacao = "0";
 
 		return arq;
 }
