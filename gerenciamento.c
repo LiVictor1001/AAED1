@@ -11,9 +11,9 @@ default: "Undefined")
 
 char* ret_name(Arv* no){
 	if(strcmp(typeof(no->info), "Diretorio") == 0)
-		return ((*Diretorio)no->info)->nome;
+		return ((Diretorio*)no->info)->nome;
 	else
-		return ((*Arquivo)no->info)->nome;
+		return ((Arquivo*)no->info)->nome;
 }
 
 int qual_tipo(char val){//estava usando essa função para descobrir se era arquivo ou diretório.
