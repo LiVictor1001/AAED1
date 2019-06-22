@@ -43,7 +43,7 @@
 	Arv* removerNo(Arv* no);
 	int qual_tipo(char val);
 	Diretorio* alocarDiretorio(char* nome);
-	Arquivo* alocarArquivo(char nome,char tipo);
+	Arquivo* alocarArquivo(char* nome,char tipo,int tam,char* dataCriacao, char* horaCriacao);
 	void apagar(Arv* no);
 
 
