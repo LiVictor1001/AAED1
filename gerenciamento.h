@@ -22,11 +22,10 @@
 		char* nome;
 		char tipo;
 		int tam;
-		char* data;
-		char* hora;
-		//time_t dia, mes, ano; 
-		//time_t hora, min;
-		/*time_t é tipo da variável para receber informações de data e hora*/
+		char* dataCriacao;
+		char* horaCriacao;
+		char* dataModificacao;
+		char* horaModificacao;
 	};
 
 	struct arv{
