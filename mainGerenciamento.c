@@ -1,4 +1,5 @@
 #include "gerenciamento.c"
+#include <ctype.h>
 
 int main(int argc, char const *argv[])
 {
@@ -58,11 +59,11 @@ int main(int argc, char const *argv[])
 				case 'T':
 					fgets(tamTotalArq,500,arqDados);
 
-					nomeArqDir = strtok(tamTotalArq,"/ \0 \n");
-					nomePai = strtok(NULL,"/ \0 \n");
-					tam = strtok(NULL,"/ \0 \n");
-					dataCriacao = strtok(NULL,"/ \0 \n");
-					horaCriacao = strtok(NULL,"/ \0 \n");
+					nomeArqDir = strtok(tamTotalArq,"/ \0");
+					nomePai = strtok(NULL,"/ \0");
+					tam = strtok(NULL,"/ \0 ");
+					dataCriacao = strtok(NULL,"/ \0");
+					horaCriacao = strtok(NULL,"/ \0");
 
 					arq = alocarArquivo(nomeArqDir,'T',atoi(tam),dataCriacao,horaCriacao);//aloca memória para um arquivo
 					minhaArv = criarNo(arq);//cria um nó da árvore de arquivo texto
